@@ -106,3 +106,9 @@ myDay.forEach(function(thisHour) {
     savePlan.append(saveButton);
     hourRow.append(hourField, hourPlan, savePlan);
 })
+
+function getHeaderDate() {
+    var currentHeaderDate = moment().format('dddd, MMMM Do');
+    $("#currentDay").text(currentHeaderDate);
+}
+getHeaderDate();
