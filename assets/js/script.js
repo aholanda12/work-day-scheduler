@@ -79,7 +79,7 @@ myDay.forEach(function(thisHour) {
 
     var hourPlan = $("<div>")
         .attr({
-            "class": "col-md-9"
+            "class": "col-md-9 description"
         });
     var planData = $("<textarea>");
     hourPlan.append(planData);
@@ -112,3 +112,25 @@ function getHeaderDate() {
     $("#currentDay").text(currentHeaderDate);
 }
 getHeaderDate();
+
+function saveEvents() {
+    localStorage.setItem("myDay", JSON.stringify(myDay));
+}
+
+function displayEvents() {
+    myDay.forEach(function (_thisHour) {
+        $(`#${_thisHour.id}`).val(_thisHour.reminder);
+    })
+}
+
+function init() {
+    var storedDay = JSON.parse(localStorage.getItem("myDay"));
+
+    if (storedDay) {
+        myDay = storedDay;
+    }
+
+    saveEvents();
+    displayEvents();
+}
+init();
