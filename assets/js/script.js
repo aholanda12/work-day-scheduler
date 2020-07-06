@@ -77,25 +77,19 @@ myDay.forEach(function(thisHour) {
             "class": "col-md-2 hour"
     });
 
-    var hourPlan = $("<div>")
+    var planData = $("<textarea>")
         .attr({
             "class": "col-md-9 description"
         });
-    var planData = $("<textarea>");
-    hourPlan.append(planData);
+    // var planData = $("<textarea>").attr({
+    //             "class": "col-md-9 description"});
+   // hourPlan.append(planData);
     planData.attr("id", thisHour.id);
     if (thisHour.time < moment().format("HH")) {
-        planData.attr ({
-            "class": "past", 
-        })
-    } else if (thisHour.time === moment().format("HH")) {
-        planData.attr({
-            "class": "present"
-        })
+        planData.addClass("past")
+    } else if (thisHour.time === moment().format("HH")) {planData.addClass("present")
     } else if (thisHour.time > moment().format("HH")) {
-        planData.attr({
-            "class": "future"
-        })
+        planData.addClass("future")
     }
 
     var saveButton = $("<i class='far fa-save fa-lg'></i>")
@@ -104,7 +98,7 @@ myDay.forEach(function(thisHour) {
             "class": "col-md-1 saveBtn"
     });
     savePlan.append(saveButton);
-    hourRow.append(hourField, hourPlan, savePlan);
+    hourRow.append(hourField, planData, savePlan);
 })
 
 function getHeaderDate() {
