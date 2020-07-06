@@ -4,63 +4,63 @@ var myDay = [
         hour: "09",
         time: "09",
         meridiem: "am",
-        event: ""
+        business: ""
     },
     {
         id: "1",
         hour: "10",
         time: "10",
         meridiem: "am",
-        event: ""
+        business: ""
     },
     {
         id: "2",
         hour: "11",
         time: "11",
         meridiem: "am",
-        event: ""
+        business: ""
     },
     {
         id: "3",
         hour: "12",
         time: "12",
         meridiem: "pm",
-        event: ""
+        business: ""
     },
     {
         id: "4",
         hour: "01",
         time: "13",
         meridiem: "pm",
-        event: ""
+        business: ""
     },
     {
         id: "5",
         hour: "02",
         time: "14",
         meridiem: "pm",
-        event: ""
+        business: ""
     },
     {
         id: "6",
         hour: "03",
         time: "15",
         meridiem: "pm",
-        event: ""
+        business: ""
     },
     {
         id: "7",
         hour: "04",
         time: "16",
         meridiem: "pm",
-        event: ""
+        business: ""
     },
     {
         id: "8",
         hour: "05",
         time: "17",
         meridiem: "pm",
-        event: ""
+        business: ""
     }
     
 ]
@@ -113,13 +113,13 @@ function getHeaderDate() {
 }
 getHeaderDate();
 
-function saveEvents() {
+function saveBusiness() {
     localStorage.setItem("myDay", JSON.stringify(myDay));
 }
 
-function displayEvents() {
+function displayBusiness() {
     myDay.forEach(function (_thisHour) {
-        $(`#${_thisHour.id}`).val(_thisHour.reminder);
+        $(`#${_thisHour.id}`).val(_thisHour.business);
     })
 }
 
@@ -130,7 +130,16 @@ function init() {
         myDay = storedDay;
     }
 
-    saveEvents();
-    displayEvents();
+    saveBusiness();
+    displayBusiness();
 }
 init();
+
+$(".saveBtn").on("click", function(event) {
+    event.preventDefault();
+    var saveIndex = $(this).siblings(".description").children(".future").attr("id");
+    myDay[saveIndex].business = $(this).siblings(".description").children(".future").val();
+    console.log(saveIndex);
+    saveBusiness();
+    displayBusiness();
+})
